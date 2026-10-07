@@ -1,0 +1,919 @@
+/* ==================================================
+   GANESHA CAFÉ
+   Grid-Based Layout
+================================================== */
+/* ---------- Colour Palette ---------- */
+:root {
+  --forest: #173c35;
+  --forest-light: #285548;
+  --cream: #f6f0e5;
+  --light-cream: #fffaf2;
+  --sand: #e9d7bf;
+  --orange: #c95d35;
+  --gold: #e6ae43;
+  --espresso: #30251f;
+  --white: #ffffff;
+}
+/* ==================================================
+   GENERAL
+================================================== */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--cream);
+  color: var(--espresso);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+section {
+  scroll-margin-top: 85px;
+}
+
+.eyebrow {
+  margin: 0 0 1.2rem;
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+/* ==================================================
+   HEADER
+   Flexbox
+================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 7%;
+  background-color: var(--cream);
+  border-bottom: 1px solid rgba(48, 37, 31, 0.15);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  color: var(--forest);
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  padding: 4px;
+  object-fit: contain;
+  background-color: var(--white);
+  border-radius: 50%;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.main-nav a {
+  position: relative;
+  color: var(--espresso);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 2px;
+  background-color: var(--orange);
+  transition: width 0.25s ease;
+}
+.main-nav a:hover::after {
+  width: 100%;
+}
+/* ==================================================
+   HERO
+   CSS Grid
+================================================== */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 4rem;
+  min-height: 720px;
+
+  padding: 4.5rem 7%;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16, 48, 42, 0.96) 0%,
+      rgba(16, 48, 42, 0.88) 42%,
+      rgba(16, 48, 42, 0.55) 70%,
+      rgba(16, 48, 42, 0.42) 100%
+    ),
+    url("../img/cafe-hero.jpeg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+  right: 8%;
+  top: 12%;
+
+  width: 400px;
+  height: 400px;
+
+  background-color: rgba(230, 174, 67, 0.15);
+  border-radius: 50%;
+  filter: blur(70px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  color: #ef835e;
+}
+
+.hero h1 {
+  margin: 0;
+
+  color: var(--white);
+  font-size: clamp(4rem, 6.5vw, 6.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.25rem;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero-description {
+  max-width: 570px;
+  margin: 2rem 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ---------- Hero Buttons ---------- */
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 1rem 1.4rem;
+  border: 2px solid transparent;
+
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+}
+
+.primary-button {
+  background-color: var(--gold);
+  color: var(--espresso);
+}
+
+.primary-button:hover {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.secondary-button {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.secondary-button:hover {
+  background-color: var(--white);
+  color: var(--forest);
+}
+
+/* ---------- Hero Logo Card ---------- */
+
+.hero-brand {
+  position: relative;
+  z-index: 2;
+
+  justify-self: end;
+
+  width: min(100%, 360px);
+  padding: 2.5rem;
+
+  background-color: rgba(255, 250, 242, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+  text-align: center;
+}
+
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 190px;
+  height: 190px;
+
+  margin: 0 auto 1.5rem;
+
+  overflow: hidden;
+
+  background-color: var(--white);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+}
+
+.hero-logo img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.hero-brand > p {
+  margin: 0 0 0.4rem;
+
+  color: var(--orange);
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+}
+
+.hero-brand h2 {
+  margin: 0 0 0.8rem;
+
+  color: var(--forest);
+
+  font-size: 2rem;
+}
+
+.hero-brand > span {
+  color: #74675e;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+/* ==================================================
+   COFFEE STRIP
+   Flexbox
+================================================== */
+
+.coffee-strip {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.1rem 5%;
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.coffee-strip p {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.coffee-strip span {
+  color: var(--gold);
+}
+/* ==================================================
+   OUR STORY
+   CSS Grid
+================================================== */
+
+.our-story {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  background-color: var(--light-cream);
+}
+
+/* ---------- Story Image ---------- */
+
+.story-image {
+  position: relative;
+  min-height: 700px;
+  overflow: hidden;
+}
+
+.story-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.story-image:hover > img {
+  transform: scale(1.03);
+}
+
+.story-image-note {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 68%;
+  padding: 1.5rem 1.8rem;
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.story-image-note span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+}
+
+.story-image-note strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.35rem;
+}
+
+.story-image-note p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+}
+
+/* ---------- Story Text ---------- */
+
+.story-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 8%;
+}
+
+.story-content h2 {
+  margin: 0 0 2rem;
+  color: var(--forest);
+  font-size: clamp(3.2rem, 5vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.15rem;
+}
+
+.story-content h2 span {
+  color: var(--orange);
+}
+
+.story-intro {
+  max-width: 650px;
+  margin: 0 0 1.3rem;
+  color: var(--espresso);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.story-description {
+  max-width: 650px;
+  margin: 0 0 3rem;
+  color: #665950;
+  line-height: 1.8;
+}
+
+/* ---------- Story Feature Grid ---------- */
+
+.story-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.3rem;
+}
+
+.story-feature {
+  padding-top: 1.2rem;
+  border-top: 3px solid var(--orange);
+}
+
+.story-feature > span {
+  color: var(--orange);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.story-feature h3 {
+  margin: 0.7rem 0;
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.story-feature p {
+  margin: 0;
+  color: #665950;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* ==================================================
+   MENU
+   CSS Grid
+================================================== */
+
+.menu-section {
+  padding: 7rem 7%;
+  background-color: var(--sand);
+}
+.menu-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: end;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.menu-heading h2 {
+  margin: 0;
+  color: var(--espresso);
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.17rem;
+}
+
+.menu-intro {
+  max-width: 480px;
+  margin: 0;
+  color: #665950;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---------- Menu Cards ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+}
+.menu-card {
+  overflow: hidden;
+  background-color: var(--light-cream);
+  border: 1px solid rgba(48, 37, 31, 0.13);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(48, 37, 31, 0.13);
+}
+
+.menu-image {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.menu-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.menu-card:hover .menu-image img {
+  transform: scale(1.04);
+}
+
+.menu-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.55rem 0.8rem;
+  background-color: var(--gold);
+  color: var(--espresso);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+.menu-card-content {
+  padding: 1.7rem;
+}
+
+.menu-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.menu-type {
+  margin: 0 0 0.5rem;
+  color: var(--orange);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.menu-title h3 {
+  margin: 0;
+  color: var(--forest);
+  font-size: 1.5rem;
+}
+
+.price {
+  color: var(--orange);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.menu-card-content > p {
+  margin: 1rem 0 0;
+  color: #665950;
+  line-height: 1.6;
+}
+
+/* ==================================================
+   PHILOSOPHY
+================================================== */
+.philosophy {
+  position: relative;
+  padding: 8rem 8%;
+  overflow: hidden;
+  background-color: var(--gold);
+  color: var(--espresso);
+  text-align: center;
+}
+
+.philosophy-decoration {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+
+  color: rgba(48, 37, 31, 0.12);
+  font-size: 10rem;
+  transform: translateY(-50%);
+}
+
+.philosophy-label {
+  margin: 0 0 2rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.philosophy blockquote {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: clamp(2.7rem, 5vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.philosophy blockquote span {
+  display: block;
+  color: var(--forest);
+}
+
+.philosophy-line {
+  width: 55px;
+  height: 3px;
+  margin: 2.5rem auto 1.5rem;
+  background-color: var(--orange);
+}
+
+.quote-credit {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+/* ==================================================
+   VISIT
+   CSS Grid
+================================================== */
+
+.visit-section {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+  padding: 6rem 7%;
+  background-color: var(--forest);
+  color: var(--white);
+}
+
+.visit-intro {
+  align-self: center;
+}
+
+.visit-eyebrow {
+  color: var(--gold);
+}
+
+.visit-intro h2 {
+  margin: 0 0 2rem;
+  font-size: clamp(3.5rem, 6vw, 5.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.15rem;
+}
+
+.visit-intro > p:not(.eyebrow) {
+  max-width: 480px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+}
+
+.visit-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding-bottom: 0.35rem;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* ---------- Visit Cards ---------- */
+.visit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.visit-card {
+  min-height: 220px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.visit-number {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.visit-label {
+  margin: 2rem 0 0.7rem;
+  color: #a8c59c;
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+}
+
+.visit-card h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.55rem;
+}
+
+.visit-card > p:not(.visit-label) {
+  margin: 0.4rem 0;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+.visit-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-card {
+  background-color: var(--orange);
+}
+
+.contact-card .visit-number,
+.contact-card .visit-label {
+  color: var(--white);
+}
+
+/* ==================================================
+   FOOTER
+   Flexbox
+================================================== */
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 7%;
+
+  background-color: var(--espresso);
+  color: var(--light-cream);
+
+  font-size: 0.8rem;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.footer-brand img {
+  width: 38px;
+  height: 38px;
+  padding: 4px;
+  object-fit: contain;
+  background-color: var(--white);
+  border-radius: 50%;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN
+================================================== */
+
+@media (max-width: 950px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    min-height: auto;
+  }
+
+  .hero-brand {
+    justify-self: start;
+
+    max-width: 340px;
+  }
+
+  .our-story {
+    grid-template-columns: 1fr;
+  }
+
+  .story-image {
+    min-height: 520px;
+  }
+
+  .story-content {
+    padding: 5rem 7%;
+  }
+
+  .menu-heading {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .visit-section {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .site-header {
+    flex-direction: column;
+    gap: 0.9rem;
+
+    padding: 0.9rem 5%;
+  }
+
+  .main-nav ul {
+    gap: 1rem;
+  }
+
+  .hero {
+    padding: 5rem 6%;
+  }
+
+  .hero h1 {
+    letter-spacing: -0.15rem;
+  }
+
+  .hero-brand {
+    justify-self: center;
+
+    width: 100%;
+  }
+
+  .coffee-strip {
+    justify-content: flex-start;
+
+    overflow-x: auto;
+  }
+
+  .story-features {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-section {
+    padding: 5rem 6%;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-image {
+    height: 260px;
+  }
+
+  .visit-section {
+    padding: 5rem 6%;
+  }
+
+  .visit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .brand {
+    font-size: 1.1rem;
+  }
+
+  .main-nav a {
+    font-size: 0.8rem;
+  }
+
+  .hero-logo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .hero-logo img {
+    width: 125px;
+    height: 125px;
+  }
+
+  .story-image {
+    min-height: 400px;
+  }
+
+  .story-image-note {
+    width: 85%;
+  }
+
+  .philosophy {
+    padding: 6rem 6%;
+  }
+
+}
